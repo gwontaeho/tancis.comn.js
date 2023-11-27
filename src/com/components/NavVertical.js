@@ -19,15 +19,17 @@ const NavItem = (props) => {
     navigate(depth_1.base + __base + to);
   };
 
+  const current = !Array.isArray(children) && location.pathname === depth_1.base + __base + to;
+
   return (
     <li className="font-mono">
       <button className="h-8 px-2 text-lg flex w-full items-center justify-between" onClick={handleClick}>
-        <p>{name}</p>
+        <p className={classNames({ "text-blue": current })}>{name}</p>
         {children && <Icon icon="down" size="xs" className={classNames("transition", { "rotate-180": open })} />}
       </button>
       {Array.isArray(children) && (
         <Collapse open={open}>
-          <ul className="pl-2">
+          <ul className="pl-4">
             {children.map((child) => {
               return <NavItem key={uuid()} depth_1={depth_1} _base={__base} {...child} />;
             })}

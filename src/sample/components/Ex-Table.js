@@ -1,6 +1,6 @@
 import { FormControl, Layout, Table, Group } from "@/com/components";
 
-export const TableEx = () => {
+export const ExTable = () => {
   return (
     <Layout>
       <Group>

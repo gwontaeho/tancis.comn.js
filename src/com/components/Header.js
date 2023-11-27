@@ -38,7 +38,7 @@ export const Header = () => {
             <div>{t("test")}</div>
 
             <ModeControl />
-            <FormControl
+            {/* <FormControl
               type="select"
               value={theme.lang}
               size="fit"
@@ -48,7 +48,7 @@ export const Header = () => {
                 { label: "영어", value: "en" },
                 { label: "스와힐리어", value: "tz" },
               ]}
-            />
+            /> */}
           </div>
         </div>
       </div>

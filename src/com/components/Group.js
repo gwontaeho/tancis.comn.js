@@ -1,21 +1,7 @@
 import React, { FC, forwardRef } from "react";
 import classNames from "classnames";
 import { FormControl } from "@/com/components";
-
-// const SIZES = {
-//   1: "w-1/12",
-//   2: "w-2/12",
-//   3: "w-3/12",
-//   4: "w-4/12",
-//   5: "w-5/12",
-//   6: "w-6/12",
-//   7: "w-7/12",
-//   8: "w-8/12",
-//   9: "w-9/12",
-//   10: "w-10/12",
-//   11: "w-11/12",
-//   12: "w-12/12",
-// };
+import { formControlProps } from "@/com/components/FormControl";
 
 const SIZES = {
   1: "col-span-1",
@@ -68,32 +54,15 @@ const GroupRow = ({ children }) => {
 };
 
 /**
- * @typedef {object} GroupColProps
- * @property {number} colSize
- */
-
-/**
- * @param {GroupColProps} props
- */
-const GroupCol = (props) => {
-  const { children, label, labelSize, colSize = 4 } = props;
-  return (
-    <>
-      {label && <GroupLabel labelSize={labelSize} label={label} />}
-      <div className={classNames("p-1 flex items-center space-x-1", SIZES[colSize])}>{children}</div>
-    </>
-  );
-};
-
-/**
- * @typedef {object} GroupLabelProps
+ * @typedef {object} _GroupLabelProps
  * @property {boolean} required
  * @property {string} label
  * @property {number} labelSize
+ * @typedef {_GroupLabelProps & formControlProps} GroupLabelProps
  */
 
 /**
- * @type FC<GroupLabelProps & import('@/com/components/FormControl').formControlProps>
+ * @type FC<GroupLabelProps>
  */
 const GroupLabel = forwardRef((props, ref) => {
   const { required, type, label, labelSize = 2, ...rest } = props;
@@ -110,12 +79,13 @@ const GroupLabel = forwardRef((props, ref) => {
 });
 
 /**
- * @typedef {object} GroupControlProps
+ * @typedef {object} _GroupControlProps
  * @property {number} controlSize
+ * @typedef {_GroupControlProps & GroupLabelProps & formControlProps } GroupControlProps
  */
 
 /**
- * @type FC<GroupControlProps & GroupLabelProps & import('@/com/components/FormControl').formControlProps>
+ * @type FC<GroupControlProps>
  */
 const GroupControl = forwardRef((props, ref) => {
   const { required, labelSize, label, controlSize = 4, ...rest } = props;
@@ -128,6 +98,25 @@ const GroupControl = forwardRef((props, ref) => {
     </>
   );
 });
+
+/**
+ * @typedef {object} _GroupColProps
+ * @property {number} colSize
+ * @typedef {_GroupColProps & GroupLabelProps} GroupColProps
+ */
+
+/**
+ * @param {GroupColProps} props
+ */
+const GroupCol = (props) => {
+  const { children, label, labelSize, colSize = 4 } = props;
+  return (
+    <>
+      {label && <GroupLabel labelSize={labelSize} label={label} />}
+      <div className={classNames("p-1 flex items-center space-x-1", SIZES[colSize])}>{children}</div>
+    </>
+  );
+};
 
 Group.Header = GroupHeader;
 Group.Body = GroupBody;

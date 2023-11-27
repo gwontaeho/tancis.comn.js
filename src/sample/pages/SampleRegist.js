@@ -20,7 +20,7 @@ const option2 = [
  */
 export const SampleRegist = () => {
   const navigate = useNavigate();
-  const { showModal } = useModal();
+  const { openModal } = useModal();
   const { showToast } = useToast();
 
   const { schema, handleSubmit, clearValues } = useForm({ defaultSchema: SCHEMA_FORM_REGIST });
@@ -33,7 +33,7 @@ export const SampleRegist = () => {
     // submit handler
 
     // validation 성공 시 modal
-    showModal({
+    openModal({
       message: "그룹을 등록하시겠습니까",
       onConfirm: () => handleConfirm(data),
     });

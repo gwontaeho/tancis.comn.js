@@ -1,11 +1,40 @@
 import { useNavigate } from "react-router-dom";
-import { useForm, useFetch, useWijmo, useModal, useCondition } from "@/com/hooks";
-import { Group, Layout, Wijmo, Navigation, PageHeader, Button } from "@/com/components";
+import { useForm, useFetch, useWijmo, useModal, useCondition, usePopup } from "@/com/hooks";
+import { Group, Layout, Wijmo, Navigation, PageHeader, Button, Tooltip, Icon } from "@/com/components";
 import { OPTIONS, SCHEMA_FORM, SCHEMA_GRID, APIS, SCHEMA_GRID_COMPONENTS } from "./SampleService";
+
+const Modal = ({ _form, onSubmit }) => {
+  const { openModal } = useModal();
+  const sm = () => {
+    openModal({});
+  };
+  return (
+    <Layout>
+      <form onSubmit={_form.handleSubmit(onSubmit)}>
+        <Group>
+          <Group.Body>
+            <Group.Row>
+              <Group.Control {..._form.schema.con1} />
+              <Group.Control {..._form.schema.con2} options={OPTIONS} />
+            </Group.Row>
+            <Group.Row>
+              <Group.Control {..._form.schema._con34} controlSize={10} />
+            </Group.Row>
+          </Group.Body>
+          <Layout.Right>
+            <Button onClick={sm}>모달</Button>
+            <Button type="submit">검색</Button>
+          </Layout.Right>
+        </Group>
+      </form>
+    </Layout>
+  );
+};
 
 export const Sample = () => {
   const navigate = useNavigate();
-  const { showModal } = useModal();
+  const { openModal } = useModal();
+  const { openPopup, closePopup } = usePopup();
 
   const { condition, setCondition } = useCondition();
   const _form = useForm({ defaultSchema: SCHEMA_FORM, values: condition });
@@ -23,7 +52,7 @@ export const Sample = () => {
 
   const handleClickDelete = () => {
     if (!_wijmo.getChecked().length) return;
-    showModal({
+    openModal({
       message: "선택한 항목을 삭제하시겠습니까?",
       onConfirm: handleDelete,
     });
@@ -46,6 +75,22 @@ export const Sample = () => {
     gcs.fetch(data[0].id);
   };
 
+  const handleShowModal = () => {
+    openModal({ size: "lg", backdrop: false, render: <Modal _form={_form} onSubmit={onSubmit} /> });
+  };
+
+  const handleShowPopup = () => {
+    openPopup({ url: "/sample/pages", params: { adw: "awdd" }, callback: (data) => setCondition(data) });
+  };
+
+  const handleShowPopup2 = () => {
+    openPopup({ id: "ff", url: "/sample/pages", callback: (data) => console.log(data) });
+  };
+
+  const handleClosePopup = () => {
+    closePopup();
+  };
+
   return (
     <Layout>
       <Navigation base="/page/sample" nodes={[{ label: "List" }]} />
@@ -63,6 +108,13 @@ export const Sample = () => {
             </Group.Row>
           </Group.Body>
           <Layout.Right>
+            <Tooltip text="tooltip test 123!@#">
+              <Icon icon="question" />
+            </Tooltip>
+            <Button onClick={handleClosePopup}>팝업닫기</Button>
+            <Button onClick={handleShowPopup2}>팝업test</Button>
+            <Button onClick={handleShowPopup}>팝업</Button>
+            <Button onClick={handleShowModal}>모달</Button>
             <Button onClick={() => console.log(_form.getValues())}>검색조건 조회</Button>
             <Button onClick={() => navigate("/sample/pages/regist")}>등록</Button>
             <Button type="submit">검색</Button>

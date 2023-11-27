@@ -36,7 +36,7 @@ const schema = {
   ],
 };
 
-export const WijmoEx = () => {
+export const ExWijmo = () => {
   const { grid, getData, getChecked, getCheckedIndex, addRow, removeRow, removeChecked, page, size } = useWijmo({
     defaultSchema: schema,
   });

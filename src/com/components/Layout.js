@@ -1,6 +1,10 @@
 import classNames from "classnames";
 
 const gaps = {
+  1: {
+    col: "space-y-1",
+    row: "space-x-1",
+  },
   2: {
     col: "space-y-2",
     row: "space-x-2",

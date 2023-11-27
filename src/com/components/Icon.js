@@ -12,9 +12,10 @@ import { icons, iconSizes } from "@/com/assets/icons";
  * @param {iconProps} props
  */
 export const Icon = ({ icon, className, size = "md" }) => {
+  if (!icon) return;
   return cloneElement(icons[icon], {
     ...icons[icon].props,
     className: classNames(iconSizes[size], { [className]: className }),
-    strokeWidth: 2.5,
+    strokeWidth: 2,
   });
 };

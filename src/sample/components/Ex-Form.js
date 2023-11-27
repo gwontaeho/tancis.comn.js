@@ -56,8 +56,8 @@ const SCHEMA_SEARCH = {
     type: "between",
     label: "between 4",
     schema: {
-      begin3: { type: "date", leftButton: { icon: "search" } },
-      end3: { type: "date", rightButton: { icon: "search" } },
+      begin4: { type: "date", leftButton: { icon: "search" } },
+      end4: { type: "date", rightButton: { icon: "search" } },
     },
   },
 };
@@ -72,7 +72,7 @@ const OPTION = [
   { label: "7", value: "7" },
 ];
 
-export const FormEx = () => {
+export const ExForm = () => {
   const {
     schema,
     setSchema,
@@ -105,7 +105,7 @@ export const FormEx = () => {
         <form>
           <Group.Body>
             <Group.Row>
-              <Group.Control {...schema.text_1} />
+              <Group.Control {...schema.text_1} mask="JJ 0000" exact={false} onValueChange={(e) => console.log(e)} />
               <Group.Control {...schema.number_1} />
             </Group.Row>
             <Group.Row>
@@ -116,6 +116,7 @@ export const FormEx = () => {
               <Group.Control {...schema.checkbox_1} options={OPTION} />
               <Group.Control {...schema.radio_1} options={OPTION} />
             </Group.Row>
+
             <Group.Row>
               <Group.Control {...schema.textarea_1} />
               <Group.Control {...schema.date_1} />

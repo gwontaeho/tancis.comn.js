@@ -1,7 +1,7 @@
 import { Grid, Group } from "@/com/components";
 import { useGrid } from "@/com/hooks";
 
-export const GridEx = () => {
+export const ExGrid = () => {
   const data = (page, size, totCnt = 10) => {
     return {
       totCnt,

@@ -5,23 +5,22 @@ import { modalState } from "@/com/recoil";
 export const useModal = () => {
   const setModal = useSetRecoilState(modalState);
 
-  const showModal = ({ message, type, onConfirm, onCancel } = {}) => {
-    setModal((prev) => [
-      ...prev,
-      {
-        id: uuid(),
-        isOpen: true,
-        message,
-        type,
-        onConfirm,
-        onCancel,
-      },
-    ]);
+  /**
+   * @param {object} props
+   * @param {('sm'|'md'|'lg')} props.size
+   * @param {string} props.message
+   * @param {boolean} props.backdrop
+   * @param {function} props.onConfirm
+   * @param {function} props.onCancel
+   * @param {any} props.render
+   */
+  const openModal = (props) => {
+    setModal((prev) => [...prev, { ...props, id: uuid(), isOpen: true }]);
   };
 
-  const hideModal = () => {
+  const closeModal = () => {
     setModal([]);
   };
 
-  return { showModal, hideModal };
+  return { openModal, closeModal };
 };

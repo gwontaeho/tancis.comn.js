@@ -175,7 +175,7 @@ const treeviewItems = (search) => [
   },
 ];
 
-export const TreeEx = () => {
+export const ExTree = () => {
   return (
     <Layout direction="row">
       <Group>

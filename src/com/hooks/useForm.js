@@ -111,7 +111,7 @@ export const useForm = (props) => {
       };
 
       const getRegister = (name, origin) => {
-        return register(name, getRules(origin));
+        return register(name, { ...getRules(origin) });
       };
 
       const getControl = (name, origin) => {

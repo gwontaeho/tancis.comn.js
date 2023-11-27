@@ -6,3 +6,4 @@ export * from "./useModal";
 export * from "./useToast";
 export * from "./useWijmo";
 export * from "./useCondition";
+export * from "./usePopup";

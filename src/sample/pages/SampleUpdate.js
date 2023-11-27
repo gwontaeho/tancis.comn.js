@@ -21,7 +21,7 @@ const option2 = [
 export const SampleUpdate = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { showModal } = useModal();
+  const { openModal } = useModal();
   const { showToast } = useToast();
 
   const { schema, handleSubmit, clearValues, setValues } = useForm({ defaultSchema: SCHEMA_FORM_REGIST });
@@ -39,7 +39,7 @@ export const SampleUpdate = () => {
 
   const onSubmit = (data) => {
     console.log(data);
-    showModal({
+    openModal({
       message: "그룹을 수정하시겠습니까",
       onConfirm: () => handleConfirm(data),
     });
