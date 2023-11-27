@@ -28,10 +28,10 @@ export const SampleMain = () => {
       <Route path="/components/wijmo" element={<ExWijmo />} />
       <Route path="/components/table" element={<ExTable />} />
 
-      <Route path="/pages" element={<Sample />} />
-      <Route path="/pages/:id" element={<SampleDetail />} />
-      <Route path="/pages/:id/update" element={<SampleUpdate />} />
-      <Route path="/pages/regist" element={<SampleRegist />} />
-    </Routes>
-  );
+            <Route path="/pages" element={<Sample />} />
+            <Route path="/pages/:id" element={<SampleDetail />} />
+            <Route path="/pages/:id/update" element={<SampleUpdate />} />
+            <Route path="/pages/regist" element={<SampleRegist />} />
+        </Routes>
+    );
 };
