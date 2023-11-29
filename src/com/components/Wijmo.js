@@ -134,6 +134,8 @@ export const Wijmo = ({ gridRef, schema, pagination, addRow, removeChecked, onSe
                             cells.editor = new InputDateTime(document.createElement("div"));
                             cells.format = "g";
                             break;
+                        default:
+                            break;
                     }
                     return cells;
                 }),
