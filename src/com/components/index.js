@@ -18,3 +18,4 @@ export * from "./Layout";
 export * from "./Table";
 export * from "./IconButton";
 export * from "./Tooltip";
+export * from "./Editor";

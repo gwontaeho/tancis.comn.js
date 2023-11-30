@@ -89,6 +89,10 @@ export const SampleRoutes = [
                         name: "Wijmo",
                         to: "/wijmo",
                     },
+                    {
+                        name: "Editor",
+                        to: "/editor",
+                    },
                 ],
             },
             {
